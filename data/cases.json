@@ -1,0 +1,4787 @@
+[
+  {
+    "case_id": "CASE-20260905133112",
+    "extracted": {
+      "disruption_type": "Production halt due to machinery failure",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": 7,
+      "expected_end_date": "",
+      "severity_language": "unexpected production halt due to machinery failure",
+      "raw_facts": [
+        "Nova Components Ltd has announced an unexpected production halt",
+        "due to machinery failure",
+        "Production will stop for 7 days"
+      ],
+      "uncertain_fields": []
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "supplier": {
+        "supplier_id": "SUP001",
+        "name": "Nova Components Ltd",
+        "location": "Chennai",
+        "status": "Active"
+      },
+      "products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09"
+        }
+      ],
+      "inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "total_quantity": 120,
+          "reserved_quantity": 80,
+          "available_quantity": 40
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "total_quantity": 90,
+          "reserved_quantity": 60,
+          "available_quantity": 30
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "shortage_quantity": 20,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "shortage_quantity": 10,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "shortage_quantity": 50,
+          "risk": "At Risk"
+        }
+      ],
+      "orders_at_risk": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "shortage_quantity": 20,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "shortage_quantity": 10,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "shortage_quantity": 50,
+          "risk": "At Risk"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "supplier_data",
+          "reference": "SUP001",
+          "fact": "Matched supplier: Nova Components Ltd"
+        },
+        {
+          "source": "shipment_data",
+          "reference": "SHP001",
+          "fact": "100 units of product PRD001 are in transit"
+        },
+        {
+          "source": "shipment_data",
+          "reference": "SHP002",
+          "fact": "80 units of product PRD002 are in transit"
+        },
+        {
+          "source": "inventory_data",
+          "reference": "INV001",
+          "fact": "Warehouse WH001 has 40 available units"
+        },
+        {
+          "source": "inventory_data",
+          "reference": "INV002",
+          "fact": "Warehouse WH001 has 30 available units"
+        },
+        {
+          "source": "order_data",
+          "reference": "ORD001",
+          "fact": "Alpha Manufacturing ordered 60 units with Critical priority"
+        },
+        {
+          "source": "order_data",
+          "reference": "ORD003",
+          "fact": "Gamma Automation ordered 40 units with High priority"
+        },
+        {
+          "source": "order_data",
+          "reference": "ORD002",
+          "fact": "Beta Industries ordered 50 units with High priority"
+        }
+      ]
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE AFFECTED SHIPMENTS",
+      "reason": "Matching in-transit shipments provide sufficient potential recovery for the calculated shortage. Expediting is the fastest recovery option, subject to operational confirmation.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "Expedite affected in-transit shipments",
+          "cost_level": "HIGH",
+          "orders_protected": 3,
+          "quantity_recovered": 80,
+          "remaining_shortage": 0,
+          "confidence": "Potential recovery",
+          "tradeoffs": [
+            "Higher transportation or handling cost",
+            "May reduce disruption recovery time",
+            "Actual arrival acceleration must be confirmed operationally"
+          ],
+          "reason": "Affected products have in-transit shipments that may be accelerated. Recovery is limited to the quantity of the matching disrupted products.",
+          "evidence": [
+            "SHP001",
+            "SHP002"
+          ]
+        },
+        {
+          "action": "Reallocate available warehouse inventory",
+          "cost_level": "MEDIUM",
+          "orders_protected": 1,
+          "quantity_recovered": 50,
+          "remaining_shortage": 30,
+          "confidence": "Confirmed available stock",
+          "tradeoffs": [
+            "May consume inventory reserved for other demand",
+            "Requires warehouse movement or allocation changes",
+            "Protects higher-priority orders first"
+          ],
+          "reason": "Existing warehouse inventory is matched by product and can be prioritized toward affected customer orders.",
+          "evidence": [
+            "INV001",
+            "INV002"
+          ]
+        },
+        {
+          "action": "Part-ship critical customer orders",
+          "cost_level": "LOW",
+          "orders_protected": 1,
+          "quantity_recovered": 40,
+          "remaining_shortage": 80,
+          "confidence": "Confirmed partial fulfillment",
+          "tradeoffs": [
+            "Customers receive partial quantities",
+            "Remaining quantity may be delayed",
+            "Protects the most important customer commitments first"
+          ],
+          "reason": "Critical orders already have allocated stock. Part-shipping that confirmed quantity can reduce the immediate customer impact.",
+          "evidence": [
+            "ORD001"
+          ]
+        },
+        {
+          "action": "Notify affected customers",
+          "cost_level": "LOW",
+          "orders_protected": 0,
+          "quantity_recovered": 0,
+          "remaining_shortage": 80,
+          "confidence": "Confirmed communication action",
+          "tradeoffs": [
+            "Does not recover physical inventory",
+            "Improves customer visibility",
+            "Allows customers to adjust their plans"
+          ],
+          "reason": "Orders with confirmed shortage should receive early communication about delivery risk.",
+          "evidence": [
+            "ORD001",
+            "ORD003",
+            "ORD002"
+          ]
+        },
+        {
+          "action": "Wait for disruption to resolve",
+          "cost_level": "LOW",
+          "orders_protected": 0,
+          "quantity_recovered": 0,
+          "remaining_shortage": 80,
+          "confidence": "Uncertain recovery",
+          "tradeoffs": [
+            "No additional operational cost",
+            "Highest delivery risk",
+            "May result in missed customer deadlines"
+          ],
+          "reason": "Waiting avoids additional cost but provides no immediate recovery of the calculated shortage.",
+          "evidence": [
+            "ORD001",
+            "ORD003",
+            "ORD002"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "CASE-20260905134137",
+    "extracted": {
+      "disruption_type": "production halt due to machinery failure",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": 7,
+      "expected_end_date": "",
+      "severity_language": "unexpected production halt",
+      "raw_facts": [
+        "Nova Components Ltd has announced an unexpected production halt due to machinery failure.",
+        "Production will stop for 7 days."
+      ],
+      "uncertain_fields": [
+        "start_date: no explicit start date mentioned for the production halt"
+      ]
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "supplier": {
+        "supplier_id": "SUP001",
+        "name": "Nova Components Ltd",
+        "location": "Chennai",
+        "status": "Active"
+      },
+      "products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09"
+        }
+      ],
+      "inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "total_quantity": 120,
+          "reserved_quantity": 80,
+          "available_quantity": 40
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "total_quantity": 90,
+          "reserved_quantity": 60,
+          "available_quantity": 30
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "shortage_quantity": 20,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "shortage_quantity": 10,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "shortage_quantity": 50,
+          "risk": "At Risk"
+        }
+      ],
+      "orders_at_risk": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "shortage_quantity": 20,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "shortage_quantity": 10,
+          "risk": "At Risk"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "shortage_quantity": 50,
+          "risk": "At Risk"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "supplier_data",
+          "reference": "SUP001",
+          "fact": "Matched supplier: Nova Components Ltd"
+        },
+        {
+          "source": "shipment_data",
+          "reference": "SHP001",
+          "fact": "100 units of product PRD001 are in transit"
+        },
+        {
+          "source": "shipment_data",
+          "reference": "SHP002",
+          "fact": "80 units of product PRD002 are in transit"
+        },
+        {
+          "source": "inventory_data",
+          "reference": "INV001",
+          "fact": "Warehouse WH001 has 40 available units"
+        },
+        {
+          "source": "inventory_data",
+          "reference": "INV002",
+          "fact": "Warehouse WH001 has 30 available units"
+        },
+        {
+          "source": "order_data",
+          "reference": "ORD001",
+          "fact": "Alpha Manufacturing ordered 60 units with Critical priority"
+        },
+        {
+          "source": "order_data",
+          "reference": "ORD003",
+          "fact": "Gamma Automation ordered 40 units with High priority"
+        },
+        {
+          "source": "order_data",
+          "reference": "ORD002",
+          "fact": "Beta Industries ordered 50 units with High priority"
+        }
+      ]
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE AFFECTED SHIPMENTS",
+      "reason": "Matching in-transit shipments provide sufficient potential recovery for the calculated shortage. Expediting is the fastest recovery option, subject to operational confirmation.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "Expedite affected in-transit shipments",
+          "cost_level": "HIGH",
+          "orders_protected": 3,
+          "quantity_recovered": 80,
+          "remaining_shortage": 0,
+          "confidence": "Potential recovery",
+          "tradeoffs": [
+            "Higher transportation or handling cost",
+            "May reduce disruption recovery time",
+            "Actual arrival acceleration must be confirmed operationally"
+          ],
+          "reason": "Affected products have in-transit shipments that may be accelerated. Recovery is limited to the quantity of the matching disrupted products.",
+          "evidence": [
+            "SHP001",
+            "SHP002"
+          ]
+        },
+        {
+          "action": "Reallocate available warehouse inventory",
+          "cost_level": "MEDIUM",
+          "orders_protected": 1,
+          "quantity_recovered": 50,
+          "remaining_shortage": 30,
+          "confidence": "Confirmed available stock",
+          "tradeoffs": [
+            "May consume inventory reserved for other demand",
+            "Requires warehouse movement or allocation changes",
+            "Protects higher-priority orders first"
+          ],
+          "reason": "Existing warehouse inventory is matched by product and can be prioritized toward affected customer orders.",
+          "evidence": [
+            "INV001",
+            "INV002"
+          ]
+        },
+        {
+          "action": "Part-ship critical customer orders",
+          "cost_level": "LOW",
+          "orders_protected": 1,
+          "quantity_recovered": 40,
+          "remaining_shortage": 80,
+          "confidence": "Confirmed partial fulfillment",
+          "tradeoffs": [
+            "Customers receive partial quantities",
+            "Remaining quantity may be delayed",
+            "Protects the most important customer commitments first"
+          ],
+          "reason": "Critical orders already have allocated stock. Part-shipping that confirmed quantity can reduce the immediate customer impact.",
+          "evidence": [
+            "ORD001"
+          ]
+        },
+        {
+          "action": "Notify affected customers",
+          "cost_level": "LOW",
+          "orders_protected": 0,
+          "quantity_recovered": 0,
+          "remaining_shortage": 80,
+          "confidence": "Confirmed communication action",
+          "tradeoffs": [
+            "Does not recover physical inventory",
+            "Improves customer visibility",
+            "Allows customers to adjust their plans"
+          ],
+          "reason": "Orders with confirmed shortage should receive early communication about delivery risk.",
+          "evidence": [
+            "ORD001",
+            "ORD003",
+            "ORD002"
+          ]
+        },
+        {
+          "action": "Wait for disruption to resolve",
+          "cost_level": "LOW",
+          "orders_protected": 0,
+          "quantity_recovered": 0,
+          "remaining_shortage": 80,
+          "confidence": "Uncertain recovery",
+          "tradeoffs": [
+            "No additional operational cost",
+            "Highest delivery risk",
+            "May result in missed customer deadlines"
+          ],
+          "reason": "Waiting avoids additional cost but provides no immediate recovery of the calculated shortage.",
+          "evidence": [
+            "ORD001",
+            "ORD003",
+            "ORD002"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "CASE-20260905135518",
+    "extracted": {
+      "disruption_type": "Production Shutdown",
+      "supplier_name": "UnknownTech Industries",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "complete production shutdown, major factory incident",
+      "raw_facts": [
+        "UnknownTech Industries has announced a complete production shutdown due to a major factory incident."
+      ],
+      "uncertain_fields": [
+        "start_date"
+      ]
+    },
+    "impact": {
+      "severity": "HUMAN REVIEW",
+      "status": "REVIEW REQUIRED",
+      "reason": "The disruption notice mentions supplier 'UnknownTech Industries', but no matching supplier was found in the supply-chain data.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [
+        "Unknown supplier",
+        "No reliable entity mapping"
+      ]
+    },
+    "action_plan": {
+      "recommendation": "NO ACTION REQUIRED",
+      "reason": "No customer orders are currently at risk.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "actions": []
+    }
+  },
+  {
+    "case_id": "CASE-20260905135546",
+    "extracted": {
+      "disruption_type": "Production Shutdown",
+      "supplier_name": "UnknownTech Industries",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "complete production shutdown, major factory incident",
+      "raw_facts": [
+        "UnknownTech Industries has announced a complete production shutdown due to a major factory incident."
+      ],
+      "uncertain_fields": []
+    },
+    "impact": {
+      "severity": "HUMAN REVIEW",
+      "status": "REVIEW REQUIRED",
+      "reason": "The disruption notice mentions supplier 'UnknownTech Industries', but no matching supplier was found in the supply-chain data.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [
+        "Unknown supplier",
+        "No reliable entity mapping"
+      ]
+    },
+    "action_plan": {
+      "recommendation": "NO ACTION REQUIRED",
+      "reason": "No customer orders are currently at risk.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "actions": []
+    }
+  },
+  {
+    "case_id": "CASE-20260905135840",
+    "extracted": {
+      "disruption_type": "production shutdown",
+      "supplier_name": "UnknownTech Industries",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "complete production shutdown, major factory incident",
+      "raw_facts": [
+        "UnknownTech Industries has announced a complete production shutdown due to a major factory incident."
+      ],
+      "uncertain_fields": []
+    },
+    "impact": {
+      "severity": "HUMAN REVIEW",
+      "status": "REVIEW REQUIRED",
+      "reason": "The disruption notice mentions supplier 'UnknownTech Industries', but no matching supplier was found in the supply-chain data.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [
+        "Unknown supplier",
+        "No reliable entity mapping"
+      ]
+    },
+    "action_plan": {
+      "recommendation": "HUMAN REVIEW REQUIRED",
+      "reason": "The disruption could not be reliably mapped to the known supply-chain data. No operational action should be recommended until the mapping is confirmed by a human reviewer.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [
+        {
+          "action": "VERIFY DISRUPTION DETAILS",
+          "cost_level": "LOW",
+          "impact": "Prevents incorrect supply-chain decisions.",
+          "protected_orders": 0,
+          "remaining_risk": "UNKNOWN",
+          "tradeoffs": "Requires human confirmation before further action.",
+          "recommended": true
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905140139",
+    "extracted": {
+      "disruption_type": "production halt",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": 7,
+      "expected_end_date": "",
+      "severity_language": "unexpected production halt due to machinery failure",
+      "raw_facts": [
+        "Nova Components Ltd has announced an unexpected production halt due to machinery failure.",
+        "Production will stop for 7 days."
+      ],
+      "uncertain_fields": []
+    },
+    "impact": {
+      "severity": "NO IMPACT",
+      "status": "NO CURRENT IMPACT",
+      "reason": "The disruption was successfully mapped to the known supply-chain data, but no pending shipments or customer orders are currently affected.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": null,
+          "source_name": "Nova Components Ltd",
+          "claim": "Supplier matched to disruption notice"
+        }
+      ],
+      "review_reasons": []
+    },
+    "action_plan": {
+      "recommendation": "NO CURRENT IMPACT",
+      "reason": "The disruption notice was analyzed, but no pending shipments, inventory exposure, or customer orders were found to be affected.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [
+        {
+          "action": "MONITOR",
+          "cost_level": "NONE",
+          "impact": "No current customer impact.",
+          "protected_orders": 0,
+          "remaining_risk": "LOW",
+          "tradeoffs": "Continue monitoring in case the situation changes.",
+          "recommended": true
+        }
+      ],
+      "requires_human_approval": false
+    }
+  },
+  {
+    "case_id": "CASE-20260905141853",
+    "extracted": {
+      "disruption_type": "equipment failure",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller units"
+      ],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "stopped production, equipment failure, halted immediately",
+      "raw_facts": [
+        "Nova Components Ltd has stopped production of Motor Controller units due to an equipment failure.",
+        "Production will be halted immediately."
+      ],
+      "uncertain_fields": [
+        "start_date: immediately"
+      ]
+    },
+    "impact": {
+      "severity": "HUMAN REVIEW",
+      "status": "REVIEW REQUIRED",
+      "reason": "The product mentioned in the disruption notice could not be matched to the known supply-chain data.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [
+        "The product mentioned in the disruption notice could not be matched to the known supply-chain data."
+      ],
+      "disruption_type": "equipment failure",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller units"
+        ],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "HUMAN REVIEW REQUIRED",
+      "reason": "The disruption could not be reliably mapped to the known supply-chain data. No operational action should be recommended until the mapping is confirmed by a human reviewer.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [
+        {
+          "action": "VERIFY DISRUPTION DETAILS",
+          "cost_level": "LOW",
+          "impact": "Prevents incorrect supply-chain decisions.",
+          "protected_orders": 0,
+          "remaining_risk": "UNKNOWN",
+          "tradeoffs": "Requires human confirmation before further action.",
+          "recommended": true
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905141928",
+    "extracted": {
+      "disruption_type": "Equipment failure",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller units"
+      ],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "stopped production; Production will be halted immediately.",
+      "raw_facts": [
+        "Nova Components Ltd has stopped production of Motor Controller units",
+        "due to an equipment failure",
+        "Production will be halted immediately"
+      ],
+      "uncertain_fields": [
+        "start_date"
+      ]
+    },
+    "impact": {
+      "severity": "HUMAN REVIEW",
+      "status": "REVIEW REQUIRED",
+      "reason": "The product mentioned in the disruption notice could not be matched to the known supply-chain data.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [
+        "The product mentioned in the disruption notice could not be matched to the known supply-chain data."
+      ],
+      "disruption_type": "Equipment failure",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller units"
+        ],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "HUMAN REVIEW REQUIRED",
+      "reason": "The disruption could not be reliably mapped to the known supply-chain data. No operational action should be recommended until the mapping is confirmed by a human reviewer.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [
+        {
+          "action": "VERIFY DISRUPTION DETAILS",
+          "cost_level": "LOW",
+          "impact": "Prevents incorrect supply-chain decisions.",
+          "protected_orders": 0,
+          "remaining_risk": "UNKNOWN",
+          "tradeoffs": "Requires human confirmation before further action.",
+          "recommended": true
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905142159",
+    "extracted": {
+      "disruption_type": "Production Stop",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller"
+      ],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "stopped production; halted immediately",
+      "raw_facts": [
+        "Nova Components Ltd has stopped production of Motor Controller units due to an equipment failure.",
+        "Production will be halted immediately."
+      ],
+      "uncertain_fields": []
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "2 customer order(s) are at risk with a total calculated shortage of 70 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "product_name": "Motor Controller",
+          "quantity": 60,
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage_quantity": 20,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "product_name": "Motor Controller",
+          "quantity": 50,
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage_quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 70,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "source_name": "Nova Components Ltd",
+          "claim": "Supplier matched to disruption notice"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "source_name": "Motor Controller",
+          "claim": "Product matched to disruption notice"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "source_name": "SHP001",
+          "claim": "Pending shipment SHP001 contains affected product PRD001"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "source_name": "INV001",
+          "claim": "Inventory INV001 contains 40 available unit(s) of affected product"
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "source_name": "Alpha Manufacturing",
+          "claim": "Customer order ORD001 requires 60 unit(s) of PRD001; 40 unit(s) can be allocated from available stock and 20 unit(s) remain exposed."
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "source_name": "Beta Industries",
+          "claim": "Customer order ORD002 requires 50 unit(s) of PRD001; 0 unit(s) can be allocated from available stock and 50 unit(s) remain exposed."
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "Production Stop",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller"
+        ],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 1 high-priority order(s) are exposed, with a total shortage of 70 unit(s).",
+      "total_shortage": 70,
+      "critical_orders": 1,
+      "high_priority_orders": 1,
+      "actions": [
+        {
+          "action": "EXPEDITE AFFECTED SHIPMENTS",
+          "cost_level": "HIGH",
+          "impact": "Potentially reduces disruption recovery time for affected orders.",
+          "protected_orders": 2,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Higher transportation or handling cost.",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE AVAILABLE STOCK",
+          "cost_level": "MEDIUM",
+          "impact": "Prioritizes available inventory for critical and high-priority customer orders.",
+          "protected_orders": 2,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "May reduce stock available for lower-priority orders.",
+          "recommended": false
+        },
+        {
+          "action": "PART-SHIP CUSTOMER ORDERS",
+          "cost_level": "MEDIUM",
+          "impact": "Allows available units to reach customers before the complete quantity is available.",
+          "protected_orders": 2,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Requires additional coordination and may create multiple deliveries.",
+          "recommended": false
+        },
+        {
+          "action": "NOTIFY AFFECTED CUSTOMERS",
+          "cost_level": "LOW",
+          "impact": "Provides early visibility into potential delivery delays.",
+          "protected_orders": 0,
+          "remaining_risk": "HIGH",
+          "tradeoffs": "Does not directly recover missing inventory.",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905142304",
+    "extracted": {
+      "disruption_type": "Production Stop",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "unrelated product that is not part of any pending shipment or customer order",
+      "raw_facts": [
+        "Nova Components Ltd has stopped production of an unrelated product that is not part of any pending shipment or customer order."
+      ],
+      "uncertain_fields": []
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "product_name": "Motor Controller",
+          "quantity": 60,
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage_quantity": 20,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "product_name": "Power Module",
+          "quantity": 40,
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage_quantity": 10,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "product_name": "Motor Controller",
+          "quantity": 50,
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage_quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "source_name": "Nova Components Ltd",
+          "claim": "Supplier matched to disruption notice"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "source_name": "SHP001",
+          "claim": "Pending shipment SHP001 contains affected product PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "source_name": "SHP002",
+          "claim": "Pending shipment SHP002 contains affected product PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "source_name": "INV001",
+          "claim": "Inventory INV001 contains 40 available unit(s) of affected product"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "source_name": "INV002",
+          "claim": "Inventory INV002 contains 30 available unit(s) of affected product"
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "source_name": "Alpha Manufacturing",
+          "claim": "Customer order ORD001 requires 60 unit(s) of PRD001; 40 unit(s) can be allocated from available stock and 20 unit(s) remain exposed."
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "source_name": "Gamma Automation",
+          "claim": "Customer order ORD003 requires 40 unit(s) of PRD002; 30 unit(s) can be allocated from available stock and 10 unit(s) remain exposed."
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "source_name": "Beta Industries",
+          "claim": "Customer order ORD002 requires 50 unit(s) of PRD001; 0 unit(s) can be allocated from available stock and 50 unit(s) remain exposed."
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "Production Stop",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s).",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "EXPEDITE AFFECTED SHIPMENTS",
+          "cost_level": "HIGH",
+          "impact": "Potentially reduces disruption recovery time for affected orders.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Higher transportation or handling cost.",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE AVAILABLE STOCK",
+          "cost_level": "MEDIUM",
+          "impact": "Prioritizes available inventory for critical and high-priority customer orders.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "May reduce stock available for lower-priority orders.",
+          "recommended": false
+        },
+        {
+          "action": "PART-SHIP CUSTOMER ORDERS",
+          "cost_level": "MEDIUM",
+          "impact": "Allows available units to reach customers before the complete quantity is available.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Requires additional coordination and may create multiple deliveries.",
+          "recommended": false
+        },
+        {
+          "action": "NOTIFY AFFECTED CUSTOMERS",
+          "cost_level": "LOW",
+          "impact": "Provides early visibility into potential delivery delays.",
+          "protected_orders": 0,
+          "remaining_risk": "HIGH",
+          "tradeoffs": "Does not directly recover missing inventory.",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905142928",
+    "extracted": {
+      "disruption_type": "Equipment Failure",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller"
+      ],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "stopped production, halted immediately",
+      "raw_facts": [
+        "Nova Components Ltd has stopped production of Motor Controller units due to an equipment failure.",
+        "Production will be halted immediately."
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "2 customer order(s) are at risk with a total calculated shortage of 70 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "product_name": "Motor Controller",
+          "quantity": 60,
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage_quantity": 20,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "product_name": "Motor Controller",
+          "quantity": 50,
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage_quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 70,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "source_name": "Nova Components Ltd",
+          "claim": "Supplier matched to disruption notice"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "source_name": "Motor Controller",
+          "claim": "Product matched to disruption notice"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "source_name": "SHP001",
+          "claim": "Pending shipment SHP001 contains affected product PRD001"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "source_name": "INV001",
+          "claim": "Inventory INV001 contains 40 available unit(s) of affected product"
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "source_name": "Alpha Manufacturing",
+          "claim": "Customer order ORD001 requires 60 unit(s) of PRD001; 40 unit(s) can be allocated from available stock and 20 unit(s) remain exposed."
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "source_name": "Beta Industries",
+          "claim": "Customer order ORD002 requires 50 unit(s) of PRD001; 0 unit(s) can be allocated from available stock and 50 unit(s) remain exposed."
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "Equipment Failure",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller"
+        ],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 1 high-priority order(s) are exposed, with a total shortage of 70 unit(s).",
+      "total_shortage": 70,
+      "critical_orders": 1,
+      "high_priority_orders": 1,
+      "actions": [
+        {
+          "action": "EXPEDITE AFFECTED SHIPMENTS",
+          "cost_level": "HIGH",
+          "impact": "Potentially reduces disruption recovery time for affected orders.",
+          "protected_orders": 2,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Higher transportation or handling cost.",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE AVAILABLE STOCK",
+          "cost_level": "MEDIUM",
+          "impact": "Prioritizes available inventory for critical and high-priority customer orders.",
+          "protected_orders": 2,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "May reduce stock available for lower-priority orders.",
+          "recommended": false
+        },
+        {
+          "action": "PART-SHIP CUSTOMER ORDERS",
+          "cost_level": "MEDIUM",
+          "impact": "Allows available units to reach customers before the complete quantity is available.",
+          "protected_orders": 2,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Requires additional coordination and may create multiple deliveries.",
+          "recommended": false
+        },
+        {
+          "action": "NOTIFY AFFECTED CUSTOMERS",
+          "cost_level": "LOW",
+          "impact": "Provides early visibility into potential delivery delays.",
+          "protected_orders": 0,
+          "remaining_risk": "HIGH",
+          "tradeoffs": "Does not directly recover missing inventory.",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905142945",
+    "extracted": {
+      "disruption_type": "Production Stoppage",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "stopped production",
+      "raw_facts": [
+        "Nova Components Ltd has stopped production of an unrelated product that is not part of any pending shipment or customer order."
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": true
+    },
+    "impact": {
+      "severity": "NO IMPACT",
+      "status": "NO CURRENT IMPACT",
+      "reason": "The disruption notice explicitly states that the disruption does not affect pending shipments or customer orders.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [],
+      "disruption_type": "Production Stoppage",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "NO CURRENT IMPACT",
+      "reason": "The disruption notice was analyzed, but no pending shipments, inventory exposure, or customer orders were found to be affected.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [
+        {
+          "action": "MONITOR",
+          "cost_level": "NONE",
+          "impact": "No current customer impact.",
+          "protected_orders": 0,
+          "remaining_risk": "LOW",
+          "tradeoffs": "Continue monitoring in case the situation changes.",
+          "recommended": true
+        }
+      ],
+      "requires_human_approval": false
+    }
+  },
+  {
+    "case_id": "CASE-20260905143132",
+    "extracted": {
+      "disruption_type": "Production shutdown",
+      "supplier_name": "Acme Global Components",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [
+        "SHP999"
+      ],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "unexpected production shutdown due to a factory fire",
+      "raw_facts": [
+        "Acme Global Components has announced an unexpected production shutdown due to a factory fire.",
+        "Shipment SHP999 may be delayed."
+      ],
+      "uncertain_fields": [
+        "Shipment SHP999 may be delayed."
+      ],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "HUMAN REVIEW",
+      "status": "REVIEW REQUIRED",
+      "reason": "The supplier mentioned in the disruption notice could not be matched to the known supply-chain data.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [
+        "The supplier mentioned in the disruption notice could not be matched to the known supply-chain data."
+      ],
+      "disruption_type": "Production shutdown",
+      "mapped_entities": {
+        "supplier_name": "Acme Global Components",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": [
+          "SHP999"
+        ]
+      }
+    },
+    "action_plan": {
+      "recommendation": "HUMAN REVIEW REQUIRED",
+      "reason": "The disruption could not be reliably mapped to the known supply-chain data. No operational action should be recommended until the mapping is confirmed by a human reviewer.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [
+        {
+          "action": "VERIFY DISRUPTION DETAILS",
+          "cost_level": "LOW",
+          "impact": "Prevents incorrect supply-chain decisions.",
+          "protected_orders": 0,
+          "remaining_risk": "UNKNOWN",
+          "tradeoffs": "Requires human confirmation before further action.",
+          "recommended": true
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905144451",
+    "extracted": {
+      "disruption_type": "carrier delay",
+      "supplier_name": "",
+      "carrier_name": "BlueDart Logistics",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": 5,
+      "expected_end_date": "",
+      "severity_language": "severe",
+      "raw_facts": [
+        "BlueDart Logistics has reported a severe carrier delay.",
+        "Shipments currently in transit with BlueDart Logistics may be delayed by 5 days."
+      ],
+      "uncertain_fields": [
+        "Shipments currently in transit with BlueDart Logistics may be delayed by 5 days."
+      ],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "carrier delay",
+      "mapped_entities": {
+        "supplier_name": null,
+        "carrier_name": "BlueDart Logistics",
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s).",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "EXPEDITE AFFECTED SHIPMENTS",
+          "cost_level": "HIGH",
+          "impact": "Potentially reduces disruption recovery time for affected orders.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Higher transportation or handling cost.",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE AVAILABLE STOCK",
+          "cost_level": "MEDIUM",
+          "impact": "Prioritizes available inventory for critical and high-priority customer orders.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "May reduce stock available for lower-priority orders.",
+          "recommended": false
+        },
+        {
+          "action": "PART-SHIP CUSTOMER ORDERS",
+          "cost_level": "MEDIUM",
+          "impact": "Allows available units to reach customers before the complete quantity is available.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Requires additional coordination and may create multiple deliveries.",
+          "recommended": false
+        },
+        {
+          "action": "NOTIFY AFFECTED CUSTOMERS",
+          "cost_level": "LOW",
+          "impact": "Provides early visibility into potential delivery delays.",
+          "protected_orders": 0,
+          "remaining_risk": "HIGH",
+          "tradeoffs": "Does not directly recover missing inventory.",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905144719",
+    "extracted": {
+      "disruption_type": "flooding incident",
+      "supplier_name": "",
+      "carrier_name": "",
+      "warehouse_name": "Chennai Central Warehouse",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "Warehouse operations are temporarily suspended.",
+      "raw_facts": [
+        "Chennai Central Warehouse has suffered a flooding incident.",
+        "Warehouse operations are temporarily suspended."
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "warehouse",
+          "source_id": "WH001",
+          "field": "name",
+          "value": "Chennai Central Warehouse"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "flooding incident",
+      "mapped_entities": {
+        "supplier_name": null,
+        "carrier_name": null,
+        "warehouse_name": "Chennai Central Warehouse",
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s).",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "EXPEDITE AFFECTED SHIPMENTS",
+          "cost_level": "HIGH",
+          "impact": "Potentially reduces disruption recovery time for affected orders.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Higher transportation or handling cost.",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE AVAILABLE STOCK",
+          "cost_level": "MEDIUM",
+          "impact": "Prioritizes available inventory for critical and high-priority customer orders.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "May reduce stock available for lower-priority orders.",
+          "recommended": false
+        },
+        {
+          "action": "PART-SHIP CUSTOMER ORDERS",
+          "cost_level": "MEDIUM",
+          "impact": "Allows available units to reach customers before the complete quantity is available.",
+          "protected_orders": 3,
+          "remaining_risk": "MEDIUM",
+          "tradeoffs": "Requires additional coordination and may create multiple deliveries.",
+          "recommended": false
+        },
+        {
+          "action": "NOTIFY AFFECTED CUSTOMERS",
+          "cost_level": "LOW",
+          "impact": "Provides early visibility into potential delivery delays.",
+          "protected_orders": 0,
+          "remaining_risk": "HIGH",
+          "tradeoffs": "Does not directly recover missing inventory.",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905144943",
+    "extracted": {
+      "disruption_type": "flooding incident",
+      "supplier_name": "",
+      "carrier_name": "",
+      "warehouse_name": "Chennai Central Warehouse",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": null,
+      "expected_end_date": "",
+      "severity_language": "temporarily suspended",
+      "raw_facts": [
+        "Chennai Central Warehouse has suffered a flooding incident.",
+        "Warehouse operations are temporarily suspended."
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "warehouse",
+          "source_id": "WH001",
+          "field": "name",
+          "value": "Chennai Central Warehouse"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "flooding incident",
+      "mapped_entities": {
+        "supplier_name": null,
+        "carrier_name": null,
+        "warehouse_name": "Chennai Central Warehouse",
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905145513",
+    "extracted": {
+      "disruption_type": "Production Halt",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": 7,
+      "expected_end_date": "",
+      "severity_language": "unexpected production halt due to machinery failure",
+      "raw_facts": [
+        "Nova Components Ltd has announced an unexpected production halt due to machinery failure.",
+        "Production will stop for 7 days."
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "field": "name",
+          "value": "Nova Components Ltd"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "Production Halt",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905150206",
+    "extracted": {
+      "disruption_type": "carrier delay",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "BlueDart Logistics",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller"
+      ],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": 3,
+      "expected_end_date": "",
+      "severity_language": "",
+      "raw_facts": [
+        "BlueDart Logistics has reported a 3-day carrier delay affecting the shipment of Motor Controller products from Nova Components Ltd."
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "field": "name",
+          "value": "Nova Components Ltd"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "field": "name",
+          "value": "Motor Controller"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "carrier delay",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": "BlueDart Logistics",
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller"
+        ],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905150324",
+    "extracted": {
+      "disruption_type": "Production Stop",
+      "supplier_name": "UnknownTech Industries",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": 10,
+      "expected_end_date": "",
+      "severity_language": "completely stopped production; major factory incident",
+      "raw_facts": [
+        "UnknownTech Industries has completely stopped production because of a major factory incident.",
+        "All shipments are expected to be delayed for 10 days."
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false
+    },
+    "impact": {
+      "severity": "HUMAN REVIEW",
+      "status": "REVIEW REQUIRED",
+      "reason": "The supplier mentioned in the disruption notice could not be matched to the known supply-chain data.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [
+        "Unknown supplier: UnknownTech Industries"
+      ],
+      "disruption_type": "Production Stop",
+      "mapped_entities": {
+        "supplier_name": "UnknownTech Industries",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "ESCALATE FOR HUMAN REVIEW",
+      "reason": "The supplier mentioned in the disruption notice could not be matched to the known supply-chain data.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [
+        {
+          "action": "HUMAN_REVIEW",
+          "description": "Validate the disruption details and affected entities.",
+          "priority": "Immediate"
+        }
+      ],
+      "options": [],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905151110",
+    "extracted": {
+      "disruption_type": "production halt",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [
+        "SHP001",
+        "SHP002"
+      ],
+      "start_date": "",
+      "duration_days": "5",
+      "expected_end_date": "",
+      "severity_language": "halt",
+      "raw_facts": [
+        "Supplier identified: Nova Components Ltd",
+        "Duration mentioned: 5 days",
+        "Shipment references: SHP001, SHP002"
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": true,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 49.41299029s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '49s'}]}}"
+    },
+    "impact": {
+      "severity": "NO IMPACT",
+      "status": "NO CURRENT IMPACT",
+      "reason": "The disruption notice explicitly states that the disruption does not affect pending shipments or customer orders.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [],
+      "disruption_type": "production halt",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": [
+          "SHP001",
+          "SHP002"
+        ]
+      }
+    },
+    "action_plan": {
+      "recommendation": "NO ACTION REQUIRED",
+      "reason": "No current customer or shipment impact was identified.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [],
+      "options": [],
+      "requires_human_approval": false
+    }
+  },
+  {
+    "case_id": "CASE-20260905151208",
+    "extracted": {
+      "disruption_type": "carrier delay",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "BlueDart Logistics",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller"
+      ],
+      "product_codes": [
+        "PRD001"
+      ],
+      "affected_shipments": [
+        "SHP001",
+        "SHP002"
+      ],
+      "start_date": "",
+      "duration_days": "",
+      "expected_end_date": "",
+      "severity_language": "",
+      "raw_facts": [
+        "Supplier identified: Nova Components Ltd",
+        "Product identified: Motor Controller",
+        "Carrier identified: BlueDart Logistics",
+        "Shipment references: SHP001, SHP002"
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 51.910130347s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '51s'}]}}"
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "field": "name",
+          "value": "Nova Components Ltd"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "field": "name",
+          "value": "Motor Controller"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "carrier delay",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": "BlueDart Logistics",
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller"
+        ],
+        "product_codes": [
+          "PRD001"
+        ],
+        "affected_shipments": [
+          "SHP001",
+          "SHP002"
+        ]
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905151331",
+    "extracted": {
+      "disruption_type": "factory shutdown",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller",
+        "Power Module"
+      ],
+      "product_codes": [
+        "PRD001",
+        "PRD002"
+      ],
+      "affected_shipments": [
+        "SHP001",
+        "SHP002"
+      ],
+      "start_date": "",
+      "duration_days": "",
+      "expected_end_date": "",
+      "severity_language": "shutdown",
+      "raw_facts": [
+        "Supplier identified: Nova Components Ltd",
+        "Product identified: Motor Controller, Power Module",
+        "Shipment references: SHP001, SHP002"
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 27.581694552s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '27s'}]}}"
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "field": "name",
+          "value": "Nova Components Ltd"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "field": "name",
+          "value": "Motor Controller"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "factory shutdown",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller",
+          "Power Module"
+        ],
+        "product_codes": [
+          "PRD001",
+          "PRD002"
+        ],
+        "affected_shipments": [
+          "SHP001",
+          "SHP002"
+        ]
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905151348",
+    "extracted": {
+      "disruption_type": "delivery delay",
+      "supplier_name": "",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": "",
+      "expected_end_date": "",
+      "severity_language": "",
+      "raw_facts": [],
+      "uncertain_fields": [
+        "business_entity"
+      ],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 10.952312475s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '10s'}]}}"
+    },
+    "impact": {
+      "severity": "NO IMPACT",
+      "status": "NO CURRENT IMPACT",
+      "reason": "The disruption was mapped to the known supply-chain data, but no pending shipments or customer orders are currently affected.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [],
+      "disruption_type": "delivery delay",
+      "mapped_entities": {
+        "supplier_name": null,
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "NO ACTION REQUIRED",
+      "reason": "No current customer or shipment impact was identified.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [],
+      "options": [],
+      "requires_human_approval": false
+    }
+  },
+  {
+    "case_id": "CASE-20260905151407",
+    "extracted": {
+      "disruption_type": "flooding incident",
+      "supplier_name": "",
+      "carrier_name": "",
+      "warehouse_name": "Chennai Central Warehouse",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": "",
+      "expected_end_date": "",
+      "severity_language": "temporarily suspended",
+      "raw_facts": [
+        "Warehouse identified: Chennai Central Warehouse"
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 51.46090761s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '51s'}]}}"
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "warehouse",
+          "source_id": "WH001",
+          "field": "name",
+          "value": "Chennai Central Warehouse"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "flooding incident",
+      "mapped_entities": {
+        "supplier_name": null,
+        "carrier_name": null,
+        "warehouse_name": "Chennai Central Warehouse",
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905152903",
+    "extracted": {
+      "disruption_type": "carrier delay",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "BlueDart Logistics",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller"
+      ],
+      "product_codes": [
+        "PRD001"
+      ],
+      "affected_shipments": [
+        "SHP001",
+        "SHP002"
+      ],
+      "start_date": "",
+      "duration_days": "",
+      "expected_end_date": "",
+      "severity_language": "",
+      "raw_facts": [
+        "Supplier identified: Nova Components Ltd",
+        "Product identified: Motor Controller",
+        "Carrier identified: BlueDart Logistics",
+        "Shipment references: SHP001, SHP002"
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 55.813923525s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '55s'}]}}"
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "field": "name",
+          "value": "Nova Components Ltd"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "field": "name",
+          "value": "Motor Controller"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "carrier delay",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": "BlueDart Logistics",
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller"
+        ],
+        "product_codes": [
+          "PRD001"
+        ],
+        "affected_shipments": [
+          "SHP001",
+          "SHP002"
+        ]
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905161829",
+    "extracted": {
+      "disruption_type": "production halt",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller"
+      ],
+      "product_codes": [
+        "PRD001"
+      ],
+      "affected_shipments": [
+        "SHP001",
+        "SHP002"
+      ],
+      "start_date": "",
+      "duration_days": "7",
+      "expected_end_date": "",
+      "severity_language": "halt",
+      "raw_facts": [
+        "Supplier identified: Nova Components Ltd",
+        "Product identified: Motor Controller",
+        "Duration mentioned: 7 days",
+        "Shipment references: SHP001, SHP002"
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 29.407762102s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '29s'}]}}"
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "field": "name",
+          "value": "Nova Components Ltd"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "field": "name",
+          "value": "Motor Controller"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "production halt",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller"
+        ],
+        "product_codes": [
+          "PRD001"
+        ],
+        "affected_shipments": [
+          "SHP001",
+          "SHP002"
+        ]
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905162208",
+    "extracted": {
+      "disruption_type": "factory shutdown",
+      "supplier_name": "Nova Components Ltd",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [
+        "Motor Controller"
+      ],
+      "product_codes": [
+        "PRD001"
+      ],
+      "affected_shipments": [
+        "SHP001",
+        "SHP002"
+      ],
+      "start_date": "",
+      "duration_days": "10",
+      "expected_end_date": "",
+      "severity_language": "major",
+      "raw_facts": [
+        "Supplier identified: Nova Components Ltd",
+        "Product identified: Motor Controller",
+        "Duration mentioned: 10 days",
+        "Shipment references: SHP001, SHP002"
+      ],
+      "uncertain_fields": [],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 51.459389389s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '51s'}]}}"
+    },
+    "impact": {
+      "severity": "CRITICAL",
+      "status": "IMPACT IDENTIFIED",
+      "reason": "3 customer order(s) are at risk with a total calculated shortage of 80 unit(s).",
+      "affected_products": [
+        {
+          "product_id": "PRD001",
+          "name": "Motor Controller",
+          "supplier_id": "SUP001"
+        },
+        {
+          "product_id": "PRD002",
+          "name": "Power Module",
+          "supplier_id": "SUP001"
+        }
+      ],
+      "affected_shipments": [
+        {
+          "shipment_id": "SHP001",
+          "supplier_id": "SUP001",
+          "product_id": "PRD001",
+          "quantity": 100,
+          "status": "In Transit",
+          "expected_date": "2026-09-08",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        },
+        {
+          "shipment_id": "SHP002",
+          "supplier_id": "SUP001",
+          "product_id": "PRD002",
+          "quantity": 80,
+          "status": "In Transit",
+          "expected_date": "2026-09-09",
+          "carrier_id": "CAR001",
+          "carrier_name": "BlueDart Logistics"
+        }
+      ],
+      "affected_inventory": [
+        {
+          "inventory_id": "INV001",
+          "warehouse_id": "WH001",
+          "product_id": "PRD001",
+          "quantity": 120,
+          "reserved_quantity": 80
+        },
+        {
+          "inventory_id": "INV002",
+          "warehouse_id": "WH001",
+          "product_id": "PRD002",
+          "quantity": 90,
+          "reserved_quantity": 60
+        }
+      ],
+      "orders": [
+        {
+          "order_id": "ORD001",
+          "customer": "Alpha Manufacturing",
+          "product_id": "PRD001",
+          "quantity": 60,
+          "priority": "Critical",
+          "deadline": "2026-09-07",
+          "available_stock": 40,
+          "allocated_stock": 40,
+          "shortage": 20,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD003",
+          "customer": "Gamma Automation",
+          "product_id": "PRD002",
+          "quantity": 40,
+          "priority": "High",
+          "deadline": "2026-09-08",
+          "available_stock": 30,
+          "allocated_stock": 30,
+          "shortage": 10,
+          "risk": "AT RISK"
+        },
+        {
+          "order_id": "ORD002",
+          "customer": "Beta Industries",
+          "product_id": "PRD001",
+          "quantity": 50,
+          "priority": "High",
+          "deadline": "2026-09-09",
+          "available_stock": 0,
+          "allocated_stock": 0,
+          "shortage": 50,
+          "risk": "AT RISK"
+        }
+      ],
+      "total_shortage": 80,
+      "evidence": [
+        {
+          "source_type": "supplier",
+          "source_id": "SUP001",
+          "field": "name",
+          "value": "Nova Components Ltd"
+        },
+        {
+          "source_type": "product",
+          "source_id": "PRD001",
+          "field": "name",
+          "value": "Motor Controller"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP001",
+          "field": "product_id",
+          "value": "PRD001"
+        },
+        {
+          "source_type": "shipment",
+          "source_id": "SHP002",
+          "field": "product_id",
+          "value": "PRD002"
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV001",
+          "field": "quantity",
+          "value": 120
+        },
+        {
+          "source_type": "inventory",
+          "source_id": "INV002",
+          "field": "quantity",
+          "value": 90
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD001",
+          "field": "quantity",
+          "value": 60
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD002",
+          "field": "quantity",
+          "value": 50
+        },
+        {
+          "source_type": "order",
+          "source_id": "ORD003",
+          "field": "quantity",
+          "value": 40
+        }
+      ],
+      "review_reasons": [],
+      "disruption_type": "factory shutdown",
+      "mapped_entities": {
+        "supplier_name": "Nova Components Ltd",
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [
+          "Motor Controller"
+        ],
+        "product_codes": [
+          "PRD001"
+        ],
+        "affected_shipments": [
+          "SHP001",
+          "SHP002"
+        ]
+      }
+    },
+    "action_plan": {
+      "recommendation": "EXPEDITE + PRIORITIZE CRITICAL ORDERS",
+      "reason": "1 critical order(s) and 2 high-priority order(s) are exposed, with a total shortage of 80 unit(s). Expedite recovery supply while protecting critical commitments first.",
+      "total_shortage": 80,
+      "critical_orders": 1,
+      "high_priority_orders": 2,
+      "actions": [
+        {
+          "action": "PRIORITIZE_CRITICAL",
+          "description": "Protect 1 critical order(s) before lower-priority demand.",
+          "priority": "Immediate"
+        },
+        {
+          "action": "EXPEDITE",
+          "description": "Identify replacement or expedited supply for 80 shortage unit(s).",
+          "priority": "Immediate"
+        },
+        {
+          "action": "PART_SHIP",
+          "description": "Evaluate partial fulfillment using currently available stock.",
+          "priority": "High"
+        },
+        {
+          "action": "REALLOCATE",
+          "description": "Check other warehouses or available stock sources for possible reallocation.",
+          "priority": "High"
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "description": "Prepare communication for 3 at-risk customer order(s).",
+          "priority": "High"
+        },
+        {
+          "action": "HUMAN_APPROVAL",
+          "description": "Obtain human approval before executing shipment, reallocation, or customer-communication actions.",
+          "priority": "Required"
+        }
+      ],
+      "options": [
+        {
+          "action": "EXPEDITE",
+          "title": "Expedite replacement or delayed supply",
+          "benefit": "Fastest way to recover the shortage.",
+          "tradeoff": "Higher transportation or supplier-expediting cost.",
+          "best_for": "Critical and high-priority orders",
+          "recommended": true
+        },
+        {
+          "action": "REALLOCATE",
+          "title": "Reallocate available stock",
+          "benefit": "Uses existing inventory instead of waiting for new supply.",
+          "tradeoff": "May reduce stock available for another customer or warehouse.",
+          "best_for": "Situations with available stock elsewhere",
+          "recommended": false
+        },
+        {
+          "action": "PART_SHIP",
+          "title": "Part-ship affected orders",
+          "benefit": "Allows customers to receive available units immediately.",
+          "tradeoff": "The order remains partially unfulfilled.",
+          "best_for": "Orders where partial fulfillment is acceptable",
+          "recommended": false
+        },
+        {
+          "action": "PRIORITIZE",
+          "title": "Prioritize critical orders",
+          "benefit": "Protects the most time-sensitive customer commitments.",
+          "tradeoff": "Lower-priority orders may experience additional delay.",
+          "best_for": "Multiple orders competing for limited stock",
+          "recommended": true
+        },
+        {
+          "action": "NOTIFY_CUSTOMERS",
+          "title": "Notify affected customers",
+          "benefit": "Provides transparent communication about expected delays.",
+          "tradeoff": "Does not directly resolve the physical shortage.",
+          "best_for": "Orders that cannot meet their deadlines",
+          "recommended": true
+        },
+        {
+          "action": "WAIT",
+          "title": "Wait for the original supply",
+          "benefit": "Avoids additional emergency logistics cost.",
+          "tradeoff": "Higher risk of missing customer deadlines.",
+          "best_for": "Low-priority orders with sufficient deadline buffer",
+          "recommended": false
+        }
+      ],
+      "requires_human_approval": true
+    }
+  },
+  {
+    "case_id": "CASE-20260905162235",
+    "extracted": {
+      "disruption_type": "delivery delay",
+      "supplier_name": "",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": "10",
+      "expected_end_date": "",
+      "severity_language": "major",
+      "raw_facts": [
+        "Duration mentioned: 10 days"
+      ],
+      "uncertain_fields": [
+        "business_entity"
+      ],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 24.677828312s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '24s'}]}}"
+    },
+    "impact": {
+      "severity": "NO IMPACT",
+      "status": "NO CURRENT IMPACT",
+      "reason": "The disruption was mapped to the known supply-chain data, but no pending shipments or customer orders are currently affected.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [],
+      "disruption_type": "delivery delay",
+      "mapped_entities": {
+        "supplier_name": null,
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "NO ACTION REQUIRED",
+      "reason": "No current customer or shipment impact was identified.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [],
+      "options": [],
+      "requires_human_approval": false
+    }
+  },
+  {
+    "case_id": "CASE-20260905162259",
+    "extracted": {
+      "disruption_type": "delivery delay",
+      "supplier_name": "",
+      "carrier_name": "",
+      "warehouse_name": "",
+      "product_names": [],
+      "product_codes": [],
+      "affected_shipments": [],
+      "start_date": "",
+      "duration_days": "",
+      "expected_end_date": "",
+      "severity_language": "",
+      "raw_facts": [],
+      "uncertain_fields": [
+        "business_entity"
+      ],
+      "no_impact_signal": false,
+      "extraction_source": "LOCAL FALLBACK",
+      "fallback_reason": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 59.352402093s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '59s'}]}}"
+    },
+    "impact": {
+      "severity": "NO IMPACT",
+      "status": "NO CURRENT IMPACT",
+      "reason": "The disruption was mapped to the known supply-chain data, but no pending shipments or customer orders are currently affected.",
+      "affected_products": [],
+      "affected_shipments": [],
+      "affected_inventory": [],
+      "orders": [],
+      "total_shortage": 0,
+      "evidence": [],
+      "review_reasons": [],
+      "disruption_type": "delivery delay",
+      "mapped_entities": {
+        "supplier_name": null,
+        "carrier_name": null,
+        "warehouse_name": null,
+        "product_names": [],
+        "product_codes": [],
+        "affected_shipments": []
+      }
+    },
+    "action_plan": {
+      "recommendation": "NO ACTION REQUIRED",
+      "reason": "No current customer or shipment impact was identified.",
+      "total_shortage": 0,
+      "critical_orders": 0,
+      "high_priority_orders": 0,
+      "actions": [],
+      "options": [],
+      "requires_human_approval": false
+    }
+  }
+]

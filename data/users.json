@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Gobika",
+    "email": "gobika@example.com",
+    "password": "473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8",
+    "role": "Supply Chain Analyst"
+  },
+  {
+    "id": 2,
+    "name": "Gobika N",
+    "email": "gobikakothai@gmail.com",
+    "password": "08992df579af315de5d2ec9437571480c3c6da093ea8b0f0cb929c6ee8d27a59",
+    "role": "Supply Chain Analyst"
+  }
+]

@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SupplyShield AI | Control Tower</title>
+
+    <link rel="stylesheet" href="/frontend/style.css">
+
+    <style>
+        /* ================= AUTHENTICATION ================= */
+
+        .auth-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(80, 100, 255, 0.12), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(0, 200, 180, 0.08), transparent 30%),
+                #070b14;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            background: rgba(15, 22, 38, 0.96);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+        }
+
+        .auth-brand-panel {
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background:
+                linear-gradient(145deg, rgba(33,45,78,0.85), rgba(9,14,25,0.95));
+            border-right: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .auth-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 45px;
+        }
+
+        .auth-logo-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #5b7cff, #35d6c5);
+            color: white;
+        }
+
+        .auth-logo h1 {
+            margin: 0;
+            font-size: 25px;
+            color: white;
+        }
+
+        .auth-logo span {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #7f8ba5;
+            margin-top: 3px;
+        }
+
+        .auth-brand-panel h2 {
+            font-size: 46px;
+            line-height: 1.05;
+            margin: 0 0 20px;
+            color: white;
+        }
+
+        .auth-brand-panel h2 span {
+            color: #6d86ff;
+        }
+
+        .auth-brand-panel > p {
+            color: #9ba7bd;
+            line-height: 1.7;
+            max-width: 470px;
+            margin-bottom: 35px;
+        }
+
+        .auth-features {
+            display: grid;
+            gap: 15px;
+        }
+
+        .auth-feature {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: #c9d1e2;
+            font-size: 14px;
+        }
+
+        .auth-feature-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(91,124,255,0.12);
+            color: #7f96ff;
+        }
+
+        .auth-form-panel {
+            padding: 55px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-form {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .auth-form h2 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .auth-form-subtitle {
+            color: #8995ac;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .auth-form-group {
+            margin-bottom: 18px;
+        }
+
+        .auth-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #c7cfdf;
+        }
+
+        .auth-form-group input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #0b1120;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .auth-form-group input:focus {
+            border-color: #617cff;
+            box-shadow: 0 0 0 3px rgba(97,124,255,0.1);
+        }
+
+        .auth-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #617cff, #4f68df);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .auth-submit:hover {
+            opacity: 0.92;
+        }
+
+        .auth-switch {
+            text-align: center;
+            color: #8490a8;
+            font-size: 13px;
+            margin-top: 22px;
+        }
+
+        .auth-switch button {
+            background: none;
+            border: none;
+            color: #7188ff;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .auth-message {
+            display: none;
+            padding: 11px 13px;
+            border-radius: 9px;
+            margin-bottom: 18px;
+            font-size: 13px;
+        }
+
+        .auth-message.show {
+            display: block;
+        }
+
+        .auth-message.error {
+            background: rgba(255, 70, 70, 0.1);
+            border: 1px solid rgba(255,70,70,0.2);
+            color: #ff8d8d;
+        }
+
+        .auth-message.success {
+            background: rgba(40, 200, 150, 0.1);
+            border: 1px solid rgba(40,200,150,0.2);
+            color: #65dfbd;
+        }
+
+        .hidden-auth {
+            display: none !important;
+        }
+
+        /* USER PROFILE */
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 12px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #617cff, #35d6c5);
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 100px;
+        }
+
+        .user-info strong {
+            color: #e8ecf5;
+            font-size: 12px;
+        }
+
+        .user-info small {
+            color: #7f8ba5;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .logout-button {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #9ba7bd;
+            border-radius: 8px;
+            padding: 7px 10px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .logout-button:hover {
+            border-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        @media (max-width: 850px) {
+
+            .auth-container {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-brand-panel {
+                display: none;
+            }
+
+            .auth-form-panel {
+                padding: 40px 25px;
+            }
+
+            .user-info {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- AUTHENTICATION SCREEN -->
+    <!-- ========================================================= -->
+
+    <div class="auth-screen" id="auth-screen">
+
+        <div class="auth-container">
+
+            <!-- LEFT BRAND PANEL -->
+
+            <div class="auth-brand-panel">
+
+                <div class="auth-logo">
+
+                    <div class="auth-logo-icon">
+                        S
+                    </div>
+
+                    <div>
+                        <h1>SupplyShield</h1>
+                        <span>AI CONTROL TOWER</span>
+                    </div>
+
+                </div>
+
+                <h2>
+                    Protect your supply chain.
+                    <br>
+                    <span>Respond intelligently.</span>
+                </h2>
+
+                <p>
+                    AI-powered disruption intelligence that helps
+                    supply chain teams detect risks, trace impact,
+                    and make faster recovery decisions.
+                </p>
+
+                <div class="auth-features">
+
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">✦</div>
+                        AI-powered disruption extraction
+                    </div>
+
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">◉</div>
+                        Supply-chain impact analysis
+                    </div>
+
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">→</div>
+                        Intelligent response planning
+                    </div>
+
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon">◇</div>
+                        Evidence-backed decisions
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT AUTH PANEL -->
+
+            <div class="auth-form-panel">
+
+                <!-- LOGIN -->
+
+                <div class="auth-form" id="login-form">
+
+                    <h2>
+                        Welcome back
+                    </h2>
+
+                    <p class="auth-form-subtitle">
+                        Sign in to your SupplyShield control tower.
+                    </p>
+
+                    <div
+                        class="auth-message"
+                        id="login-message">
+                    </div>
+
+
+                    <div class="auth-form-group">
+
+                        <label>
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="login-email"
+                            placeholder="you@example.com"
+                        >
+
+                    </div>
+
+
+                    <div class="auth-form-group">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="login-password"
+                            placeholder="Enter your password"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="auth-submit"
+                        onclick="handleLogin()">
+
+                        Sign In →
+
+                    </button>
+
+
+                    <div class="auth-switch">
+
+                        Don't have an account?
+
+                        <button onclick="showSignup()">
+                            Create account
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SIGNUP -->
+
+                <div
+                    class="auth-form hidden-auth"
+                    id="signup-form">
+
+                    <h2>
+                        Create account
+                    </h2>
+
+                    <p class="auth-form-subtitle">
+                        Start managing your supply chain intelligence.
+                    </p>
+
+                    <div
+                        class="auth-message"
+                        id="signup-message">
+                    </div>
+
+
+                    <div class="auth-form-group">
+
+                        <label>
+                            Full name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="signup-name"
+                            placeholder="Your full name"
+                        >
+
+                    </div>
+
+
+                    <div class="auth-form-group">
+
+                        <label>
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="signup-email"
+                            placeholder="you@example.com"
+                        >
+
+                    </div>
+
+
+                    <div class="auth-form-group">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="signup-password"
+                            placeholder="Minimum 6 characters"
+                        >
+
+                    </div>
+
+
+                    <div class="auth-form-group">
+
+                        <label>
+                            Confirm password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="signup-confirm"
+                            placeholder="Confirm your password"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="auth-submit"
+                        onclick="handleSignup()">
+
+                        Create Account →
+
+                    </button>
+
+
+                    <div class="auth-switch">
+
+                        Already have an account?
+
+                        <button onclick="showLogin()">
+                            Sign in
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- MAIN APPLICATION -->
+    <!-- ========================================================= -->
+
+    <div class="app" id="main-app">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    S
+                </div>
+
+                <div>
+                    <h2>SupplyShield</h2>
+                    <span>AI CONTROL TOWER</span>
+                </div>
+
+            </div>
+
+
+            <nav class="navigation">
+
+                <button
+                    class="nav-item active"
+                    data-page="overview">
+
+                    <span>◈</span>
+                    Overview
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="disruption">
+
+                    <span>⚡</span>
+                    New Disruption
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="impact">
+
+                    <span>◉</span>
+                    Impact Analysis
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="actions">
+
+                    <span>➤</span>
+                    Action Planner
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="orders">
+
+                    <span>▣</span>
+                    Orders at Risk
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="evidence">
+
+                    <span>◇</span>
+                    Evidence
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="history">
+
+                    <span>◷</span>
+                    History
+
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    <div>
+
+                        <strong>
+                            System Operational
+                        </strong>
+
+                        <small>
+                            All services connected
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="version">
+                    SupplyShield AI v1.0
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <span class="breadcrumb">
+                        CONTROL TOWER
+                    </span>
+
+                    <h1 id="page-title">
+                        Supply Chain Overview
+                    </h1>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <!-- USER -->
+
+                    <div class="user-profile">
+
+                        <div
+                            class="user-avatar"
+                            id="user-avatar">
+
+                            G
+
+                        </div>
+
+                        <div class="user-info">
+
+                            <strong id="user-name">
+                                User
+                            </strong>
+
+                            <small id="user-role">
+                                Supply Chain Analyst
+                            </small>
+
+                        </div>
+
+                        <button
+                            class="logout-button"
+                            onclick="logout()">
+
+                            Logout
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="live-indicator">
+
+                        <span class="status-dot"></span>
+                        LIVE
+
+                    </div>
+
+
+                    <button
+                        class="new-case-btn"
+                        onclick="showPage('disruption')">
+
+                        + New Disruption
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- PAGE CONTENT -->
+
+            <section class="content">
+
+                <!-- ================= OVERVIEW ================= -->
+
+                <div
+                    class="page active-page"
+                    id="overview-page">
+
+                    <div class="hero">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                SUPPLY CHAIN INTELLIGENCE
+                            </span>
+
+                            <h2>
+                                Monitor.
+                                <span>Predict.</span>
+                                Respond.
+                            </h2>
+
+                            <p>
+                                AI-powered disruption monitoring and
+                                decision support for your supply chain.
+                            </p>
+
+                        </div>
+
+
+                        <div class="hero-flow">
+
+                            <div class="flow-item">
+
+                                <div class="flow-icon">
+                                    !
+                                </div>
+
+                                <span>
+                                    Disruption
+                                </span>
+
+                            </div>
+
+
+                            <div class="flow-line"></div>
+
+
+                            <div class="flow-item">
+
+                                <div class="flow-icon">
+                                    ◉
+                                </div>
+
+                                <span>
+                                    Impact
+                                </span>
+
+                            </div>
+
+
+                            <div class="flow-line"></div>
+
+
+                            <div class="flow-item">
+
+                                <div class="flow-icon">
+                                    →
+                                </div>
+
+                                <span>
+                                    Response
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STAT CARDS -->
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-header">
+
+                                <span>
+                                    ACTIVE DISRUPTIONS
+                                </span>
+
+                                <span class="stat-icon danger">
+                                    !
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="active-disruptions">
+
+                                0
+
+                            </div>
+
+                            <div class="stat-footer">
+                                Currently monitored
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-header">
+
+                                <span>
+                                    ORDERS AT RISK
+                                </span>
+
+                                <span class="stat-icon warning">
+                                    ◈
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="orders-risk">
+
+                                0
+
+                            </div>
+
+                            <div class="stat-footer">
+                                Requiring attention
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-header">
+
+                                <span>
+                                    STOCK AT RISK
+                                </span>
+
+                                <span class="stat-icon info">
+                                    ▣
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="stock-risk">
+
+                                0
+
+                            </div>
+
+                            <div class="stat-footer">
+                                Units potentially affected
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-header">
+
+                                <span>
+                                    SUPPLIERS IMPACTED
+                                </span>
+
+                                <span class="stat-icon purple">
+                                    ◇
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="suppliers-risk">
+
+                                0
+
+                            </div>
+
+                            <div class="stat-footer">
+                                Across active cases
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- =========================================================
+     SUPPLY CHAIN ANALYTICS
+     ========================================================= -->
+
+<div class="analytics-grid">
+
+    <!-- RISK DISTRIBUTION -->
+    <div class="panel chart-panel">
+        <div class="panel-heading">
+            <div>
+                <span class="panel-label">RISK ANALYTICS</span>
+                <h3>Order Risk Distribution</h3>
+            </div>
+
+            <span class="chart-badge">LIVE</span>
+        </div>
+
+        <div class="risk-chart">
+
+            <div class="chart-row">
+                <div class="chart-label">
+                    <span class="risk-dot critical-dot"></span>
+                    Critical
+                </div>
+
+                <div class="chart-track">
+                    <div
+                        id="critical-bar"
+                        class="chart-fill critical-fill"
+                        style="width:0%"
+                    ></div>
+                </div>
+
+                <strong id="critical-count">0</strong>
+            </div>
+
+
+            <div class="chart-row">
+                <div class="chart-label">
+                    <span class="risk-dot high-dot"></span>
+                    High
+                </div>
+
+                <div class="chart-track">
+                    <div
+                        id="high-bar"
+                        class="chart-fill high-fill"
+                        style="width:0%"
+                    ></div>
+                </div>
+
+                <strong id="high-count">0</strong>
+            </div>
+
+
+            <div class="chart-row">
+                <div class="chart-label">
+                    <span class="risk-dot medium-dot"></span>
+                    Medium
+                </div>
+
+                <div class="chart-track">
+                    <div
+                        id="medium-bar"
+                        class="chart-fill medium-fill"
+                        style="width:0%"
+                    ></div>
+                </div>
+
+                <strong id="medium-count">0</strong>
+            </div>
+
+
+            <div class="chart-row">
+                <div class="chart-label">
+                    <span class="risk-dot low-dot"></span>
+                    Low
+                </div>
+
+                <div class="chart-track">
+                    <div
+                        id="low-bar"
+                        class="chart-fill low-fill"
+                        style="width:0%"
+                    ></div>
+                </div>
+
+                <strong id="low-count">0</strong>
+            </div>
+
+        </div>
+
+        <div class="chart-summary">
+            <span>Total orders analyzed</span>
+            <strong id="total-risk-orders">0</strong>
+        </div>
+    </div>
+
+
+    <!-- INVENTORY HEALTH -->
+    <div class="panel chart-panel">
+
+        <div class="panel-heading">
+            <div>
+                <span class="panel-label">INVENTORY ANALYTICS</span>
+                <h3>Inventory Health</h3>
+            </div>
+
+            <span class="chart-badge success-badge">
+                HEALTHY
+            </span>
+        </div>
+
+        <div class="inventory-chart">
+
+            <div class="inventory-ring">
+
+                <div class="inventory-ring-inner">
+                    <strong id="inventory-available-percent">
+                        0%
+                    </strong>
+
+                    <span>Available</span>
+                </div>
+
+            </div>
+
+            <div class="inventory-legend">
+
+                <div class="legend-item">
+                    <span class="legend-color total-color"></span>
+
+                    <div>
+                        <small>Total Stock</small>
+                        <strong id="chart-total-stock">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="legend-item">
+                    <span class="legend-color reserved-color"></span>
+
+                    <div>
+                        <small>Reserved</small>
+                        <strong id="chart-reserved-stock">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="legend-item">
+                    <span class="legend-color available-color"></span>
+
+                    <div>
+                        <small>Available</small>
+                        <strong id="chart-available-stock">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+                    <!-- DASHBOARD -->
+
+                    <div class="dashboard-grid">
+
+                        <div class="panel alert-panel">
+
+                            <div class="panel-heading">
+
+                                <div>
+
+                                    <span class="panel-label">
+                                        CURRENT PRIORITY
+                                    </span>
+
+                                    <h3>
+                                        Disruption Monitor
+                                    </h3>
+
+                                </div>
+
+                                <span class="severity-badge critical">
+                                    CRITICAL
+                                </span>
+
+                            </div>
+
+
+                            <div class="alert-content">
+
+                                <div class="alert-symbol">
+                                    !
+                                </div>
+
+                                <div>
+
+                                    <h3 id="dashboard-alert-title">
+                                        No active disruption
+                                    </h3>
+
+                                    <p id="dashboard-alert-description">
+                                        Supply chain is currently operating normally.
+                                    </p>
+
+                                    <button
+                                        class="text-button"
+                                        onclick="showPage('disruption')">
+
+                                        Analyze a disruption →
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel">
+
+                            <div class="panel-heading">
+
+                                <div>
+
+                                    <span class="panel-label">
+                                        INVENTORY
+                                    </span>
+
+                                    <h3>
+                                        Stock Position
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="inventory-bars">
+
+                                <div class="inventory-row">
+
+                                    <div>
+
+                                        <span>
+                                            Total Stock
+                                        </span>
+
+                                        <strong id="total-stock">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="bar">
+
+                                        <div
+                                            class="bar-fill"
+                                            id="total-stock-bar"
+                                            style="width:100%">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="inventory-row">
+
+                                    <div>
+
+                                        <span>
+                                            Reserved
+                                        </span>
+
+                                        <strong id="reserved-stock">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="bar">
+
+                                        <div
+                                            class="bar-fill reserved"
+                                            id="reserved-stock-bar"
+                                            style="width:0%">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="inventory-row">
+
+                                    <div>
+
+                                        <span>
+                                            Available
+                                        </span>
+
+                                        <strong id="available-stock">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="bar">
+
+                                        <div
+                                            class="bar-fill available"
+                                            id="available-stock-bar"
+                                            style="width:0%">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel wide-panel">
+
+                            <div class="panel-heading">
+
+                                <div>
+
+                                    <span class="panel-label">
+                                        ORDER PRIORITY
+                                    </span>
+
+                                    <h3>
+                                        Orders Requiring Attention
+                                    </h3>
+
+                                </div>
+
+                                <button
+                                    class="text-button"
+                                    onclick="showPage('orders')">
+
+                                    View all →
+
+                                </button>
+
+                            </div>
+
+
+                            <div class="table-wrapper">
+
+                                <table>
+
+                                    <thead>
+
+                                        <tr>
+                                            <th>ORDER</th>
+                                            <th>CUSTOMER</th>
+                                            <th>PRODUCT</th>
+                                            <th>QTY</th>
+                                            <th>PRIORITY</th>
+                                            <th>DEADLINE</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="priority-orders-table">
+
+                                        <tr>
+
+                                            <td
+                                                colspan="6"
+                                                class="empty-state">
+
+                                                Loading orders...
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= DISRUPTION ================= -->
+
+                <div
+                    class="page"
+                    id="disruption-page">
+
+                    <div class="page-intro">
+
+                        <span class="eyebrow">
+                            DISRUPTION INTAKE
+                        </span>
+
+                        <h2>
+                            Analyze a New Disruption
+                        </h2>
+
+                        <p>
+                            Paste an unstructured supplier, carrier,
+                            or warehouse disruption notice.
+                            SupplyShield AI will extract facts,
+                            trace impact, and recommend actions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="disruption-layout">
+
+                        <div class="panel input-panel">
+
+                            <div class="panel-heading">
+
+                                <div>
+
+                                    <span class="panel-label">
+                                        NOTICE INPUT
+                                    </span>
+
+                                    <h3>
+                                        Disruption Notice
+                                    </h3>
+
+                                </div>
+
+                                <span class="ai-badge">
+                                    ✦ GEMINI AI
+                                </span>
+
+                            </div>
+
+
+                            <textarea
+                                id="disruption-notice"
+                                placeholder="Example:
+
+Nova Components Ltd has announced an unexpected production halt due to machinery failure. Production will stop for 7 days."></textarea>
+
+
+                            <div class="input-footer">
+
+                                <span id="character-count">
+                                    0 characters
+                                </span>
+
+                                <button
+                                    class="demo-button"
+                                    onclick="loadDemoNotice()">
+
+                                    Load Demo
+
+                                </button>
+
+                                <button
+                                    class="analyze-button"
+                                    onclick="analyzeDisruption()"
+                                    id="analyze-button">
+
+                                    <span>
+                                        Analyze Disruption
+                                    </span>
+
+                                    <span>
+                                        →
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel process-panel">
+
+                            <span class="panel-label">
+                                ANALYSIS PIPELINE
+                            </span>
+
+                            <h3>
+                                How SupplyShield Works
+                            </h3>
+
+                            <div class="process-list">
+
+                                <div class="process-step">
+
+                                    <div class="process-number">
+                                        01
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Extract Facts
+                                        </strong>
+
+                                        <p>
+                                            Gemini identifies supplier,
+                                            product, carrier, dates and
+                                            disruption details.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="process-step">
+
+                                    <div class="process-number">
+                                        02
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Trace Impact
+                                        </strong>
+
+                                        <p>
+                                            Local supply-chain data is
+                                            matched against shipments,
+                                            inventory and orders.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="process-step">
+
+                                    <div class="process-number">
+                                        03
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Recommend Response
+                                        </strong>
+
+                                        <p>
+                                            Deterministic rules compare
+                                            recovery options and
+                                            highlight trade-offs.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="analysis-result"
+                        class="result-container hidden">
+                    </div>
+
+                </div>
+
+
+                <!-- ================= IMPACT ================= -->
+
+                <div
+                    class="page"
+                    id="impact-page">
+
+                    <div class="page-intro">
+
+                        <span class="eyebrow">
+                            IMPACT INTELLIGENCE
+                        </span>
+
+                        <h2>
+                            Impact Analysis
+                        </h2>
+
+                        <p>
+                            Trace disruption effects across suppliers,
+                            shipments, inventory and customer orders.
+                        </p>
+
+                    </div>
+
+
+                    <div id="impact-content">
+
+                        <div class="empty-large">
+
+                            <div>◉</div>
+
+                            <h3>
+                                No disruption selected
+                            </h3>
+
+                            <p>
+                                Analyze a disruption to view its
+                                supply-chain impact.
+                            </p>
+
+                            <button
+                                class="analyze-button"
+                                onclick="showPage('disruption')">
+
+                                Analyze Disruption →
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ACTIONS ================= -->
+
+                <div
+                    class="page"
+                    id="actions-page">
+
+                    <div class="page-intro">
+
+                        <span class="eyebrow">
+                            DECISION SUPPORT
+                        </span>
+
+                        <h2>
+                            Action Planner
+                        </h2>
+
+                        <p>
+                            Compare response options and select the
+                            recommended course of action.
+                        </p>
+
+                    </div>
+
+
+                    <div id="actions-content">
+
+                        <div class="empty-large">
+
+                            <div>➤</div>
+
+                            <h3>
+                                No action plan available
+                            </h3>
+
+                            <p>
+                                Analyze a disruption first.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ORDERS ================= -->
+
+                <div
+                    class="page"
+                    id="orders-page">
+
+                    <div class="page-intro">
+
+                        <span class="eyebrow">
+                            CUSTOMER PRIORITY
+                        </span>
+
+                        <h2>
+                            Orders at Risk
+                        </h2>
+
+                        <p>
+                            Orders affected by active supply-chain
+                            disruptions, ranked by urgency.
+                        </p>
+
+                    </div>
+
+
+                    <div id="orders-content">
+
+                        <div class="empty-large">
+
+                            <div>▣</div>
+
+                            <h3>
+                                No affected orders
+                            </h3>
+
+                            <p>
+                                Disruption analysis results will
+                                appear here.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= EVIDENCE ================= -->
+
+                <div
+                    class="page"
+                    id="evidence-page">
+
+                    <div class="page-intro">
+
+                        <span class="eyebrow">
+                            TRACEABILITY
+                        </span>
+
+                        <h2>
+                            Evidence
+                        </h2>
+
+                        <p>
+                            Every impact claim should be traceable
+                            to local supply-chain data.
+                        </p>
+
+                    </div>
+
+
+                    <div id="evidence-content">
+
+                        <div class="empty-large">
+
+                            <div>◇</div>
+
+                            <h3>
+                                No evidence available
+                            </h3>
+
+                            <p>
+                                Evidence will appear after disruption
+                                analysis.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= HISTORY ================= -->
+
+                <div
+                    class="page"
+                    id="history-page">
+
+                    <div class="page-intro">
+
+                        <span class="eyebrow">
+                            CASE HISTORY
+                        </span>
+
+                        <h2>
+                            Disruption History
+                        </h2>
+
+                        <p>
+                            Previously analyzed disruption cases.
+                        </p>
+
+                    </div>
+
+
+                    <div id="history-content">
+
+                        <div class="empty-large">
+
+                            <div>◷</div>
+
+                            <h3>
+                                No cases loaded
+                            </h3>
+
+                            <p>
+                                Your analyzed cases will appear here.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        id="toast"
+        class="toast">
+
+        <span id="toast-message"></span>
+
+    </div>
+
+
+    <script src="/frontend/app.js"></script>
+
+</body>
+</html>

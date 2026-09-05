@@ -1,0 +1,217 @@
+{
+  "suppliers": [
+    {
+      "supplier_id": "SUP001",
+      "name": "Nova Components Ltd",
+      "location": "Chennai",
+      "status": "Active"
+    },
+    {
+      "supplier_id": "SUP002",
+      "name": "Apex Electronics",
+      "location": "Bangalore",
+      "status": "Active"
+    },
+    {
+      "supplier_id": "SUP003",
+      "name": "Prime Industrial Parts",
+      "location": "Pune",
+      "status": "Active"
+    },
+    {
+      "supplier_id": "SUP004",
+      "name": "Vertex Materials",
+      "location": "Hyderabad",
+      "status": "Active"
+    }
+  ],
+
+  "products": [
+    {
+      "product_id": "PRD001",
+      "name": "Motor Controller",
+      "supplier_id": "SUP001"
+    },
+    {
+      "product_id": "PRD002",
+      "name": "Power Module",
+      "supplier_id": "SUP001"
+    },
+    {
+      "product_id": "PRD003",
+      "name": "Control Board",
+      "supplier_id": "SUP002"
+    },
+    {
+      "product_id": "PRD004",
+      "name": "Sensor Assembly",
+      "supplier_id": "SUP003"
+    },
+    {
+      "product_id": "PRD005",
+      "name": "Industrial Relay",
+      "supplier_id": "SUP004"
+    }
+  ],
+
+  "warehouses": [
+    {
+      "warehouse_id": "WH001",
+      "name": "Chennai Central Warehouse",
+      "location": "Chennai"
+    },
+    {
+      "warehouse_id": "WH002",
+      "name": "Bangalore Distribution Hub",
+      "location": "Bangalore"
+    },
+    {
+      "warehouse_id": "WH003",
+      "name": "Hyderabad Regional Warehouse",
+      "location": "Hyderabad"
+    }
+  ],
+
+  "inventory": [
+    {
+      "inventory_id": "INV001",
+      "warehouse_id": "WH001",
+      "product_id": "PRD001",
+      "quantity": 120,
+      "reserved_quantity": 80
+    },
+    {
+      "inventory_id": "INV002",
+      "warehouse_id": "WH001",
+      "product_id": "PRD002",
+      "quantity": 90,
+      "reserved_quantity": 60
+    },
+    {
+      "inventory_id": "INV003",
+      "warehouse_id": "WH002",
+      "product_id": "PRD003",
+      "quantity": 150,
+      "reserved_quantity": 100
+    },
+    {
+      "inventory_id": "INV004",
+      "warehouse_id": "WH002",
+      "product_id": "PRD004",
+      "quantity": 70,
+      "reserved_quantity": 45
+    },
+    {
+      "inventory_id": "INV005",
+      "warehouse_id": "WH003",
+      "product_id": "PRD005",
+      "quantity": 200,
+      "reserved_quantity": 140
+    }
+  ],
+
+  "shipments": [
+    {
+  "shipment_id": "SHP001",
+  "supplier_id": "SUP001",
+  "product_id": "PRD001",
+  "quantity": 100,
+  "status": "In Transit",
+  "expected_date": "2026-09-08",
+  "carrier_id": "CAR001",
+  "carrier_name": "BlueDart Logistics"
+},
+    {
+      "shipment_id": "SHP002",
+      "supplier_id": "SUP001",
+      "product_id": "PRD002",
+      "quantity": 80,
+      "status": "In Transit",
+      "expected_date": "2026-09-09",
+      "carrier_id": "CAR001",
+      "carrier_name": "BlueDart Logistics"
+    },
+    {
+      "shipment_id": "SHP003",
+      "supplier_id": "SUP002",
+      "product_id": "PRD003",
+      "quantity": 120,
+      "status": "In Transit",
+      "expected_date": "2026-09-07",
+      "carrier_id": "CAR002",
+  "carrier_name": "Delhivery Supply Chain"
+    },
+    {
+      "shipment_id": "SHP004",
+      "supplier_id": "SUP003",
+      "product_id": "PRD004",
+      "quantity": 60,
+      "status": "In Transit",
+      "expected_date": "2026-09-10",
+      "carrier_id": "CAR003",
+  "carrier_name": "SafeTrans Logistics"
+    },
+    {
+      "shipment_id": "SHP005",
+      "supplier_id": "SUP004",
+      "product_id": "PRD005",
+      "quantity": 100,
+      "status": "Delivered",
+      "expected_date": "2026-09-04",
+      "carrier_id": "CAR004",
+  "carrier_name": "RapidRoute Transport"
+    }
+
+  ],
+
+  "orders": [
+    {
+      "order_id": "ORD001",
+      "customer": "Alpha Manufacturing",
+      "product_id": "PRD001",
+      "quantity": 60,
+      "priority": "Critical",
+      "deadline": "2026-09-07"
+    },
+    {
+      "order_id": "ORD002",
+      "customer": "Beta Industries",
+      "product_id": "PRD001",
+      "quantity": 50,
+      "priority": "High",
+      "deadline": "2026-09-09"
+    },
+    {
+      "order_id": "ORD003",
+      "customer": "Gamma Automation",
+      "product_id": "PRD002",
+      "quantity": 40,
+      "priority": "High",
+      "deadline": "2026-09-08"
+    },
+    {
+      "order_id": "ORD004",
+      "customer": "Delta Systems",
+      "product_id": "PRD003",
+      "quantity": 90,
+      "priority": "Critical",
+      "deadline": "2026-09-07"
+    },
+    {
+      "order_id": "ORD005",
+      "customer": "Omega Controls",
+      "product_id": "PRD004",
+      "quantity": 40,
+      "priority": "Medium",
+      "deadline": "2026-09-11"
+    },
+    {
+      "order_id": "ORD006",
+      "customer": "Zenith Engineering",
+      "product_id": "PRD005",
+      "quantity": 80,
+      "priority": "Low",
+      "deadline": "2026-09-12"
+    }
+  ]
+}
